@@ -33,8 +33,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/addProduct")
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO)
-    {
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) throws Exception {
         return ResponseEntity.ok(iProductService.createProduct(productDTO));
     }
 }

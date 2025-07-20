@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ICategoryService {
 
+    public CategoryDTO createCategory(CategoryDTO categoryDTO);
     public List<CategoryDTO> getCategories() throws IOException;
 }
