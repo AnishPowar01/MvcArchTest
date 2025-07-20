@@ -1,0 +1,40 @@
+package com.fake.store.MCVImpl.mapper;
+
+import com.fake.store.MCVImpl.dtos.ProductDTO;
+import com.fake.store.MCVImpl.entity.Product;
+
+public class ProductMapper {
+
+    public static ProductDTO toDTO(Product product)
+    {
+        return ProductDTO.builder()
+                .id(product.getId())
+                .image(product.getImage())
+                .color(product.getColor())
+                .price(product.getPrice())
+                .description(product.getDescription())
+                .discount(product.getDiscount())
+                .model(product.getModel())
+                .title(product.getTitle())
+                .brand(product.getBrand())
+                .category(product.getCategory())
+                .popular(product.isPopular())
+                .build();
+    }
+
+    public static Product toEntity(ProductDTO productDTO)
+    {
+        return Product.builder()
+                .image(productDTO.getImage())
+                .color(productDTO.getColor())
+                .price(productDTO.getPrice())
+                .description(productDTO.getDescription())
+                .discount(productDTO.getDiscount())
+                .model(productDTO.getModel())
+                .title(productDTO.getTitle())
+                .brand(productDTO.getBrand())
+                .category(productDTO.getCategory())
+                .popular(productDTO.isPopular())
+                .build();
+    }
+}

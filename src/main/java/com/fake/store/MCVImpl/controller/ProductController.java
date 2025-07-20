@@ -1,10 +1,11 @@
 package com.fake.store.MCVImpl.controller;
 
 import com.fake.store.MCVImpl.dtos.CategoryDTO;
+import com.fake.store.MCVImpl.dtos.ProductDTO;
 import com.fake.store.MCVImpl.service.ICategoryService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.fake.store.MCVImpl.service.IProductService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,15 +14,27 @@ import java.util.List;
 @RequestMapping("api/v1")
 public class ProductController {
 
-    private ICategoryService iCategoryService;
+    private IProductService iProductService;
 
-    public ProductController(ICategoryService iCategoryService)
+    public ProductController(IProductService iProductService)
     {
-        this.iCategoryService = iCategoryService;
+        this.iProductService = iProductService;
     }
 
-    @GetMapping("/category")
-    public List<CategoryDTO> getCategories() throws IOException {
-        return iCategoryService.getCategories();
+//    @GetMapping("/category")
+//    public List<CategoryDTO> getCategories() throws IOException {
+//        return iCategoryService.getCategories();
+//    }
+
+    @GetMapping("/product/{id}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) throws Exception{
+        ProductDTO dto = this.iProductService.getProductById(id);
+        return ResponseEntity.ok(dto);
+    }
+
+    @PostMapping("/product/addProduct")
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO)
+    {
+        return ResponseEntity.ok(iProductService.createProduct(productDTO));
     }
 }
