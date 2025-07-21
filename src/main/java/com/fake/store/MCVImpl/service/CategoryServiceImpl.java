@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl implements ICategoryService{
+public class CategoryServiceImpl {
 
     private ICategoryGateway iCategoryGateway;
 
@@ -17,8 +17,8 @@ public class CategoryServiceImpl implements ICategoryService{
         this.iCategoryGateway = iCategoryGateway;
     }
 
-    @Override
-    public List<CategoryDTO> getCategories() throws IOException {
-        return iCategoryGateway.getCategories();
-    }
+//    @Override
+//    public List<CategoryDTO> getCategories() throws IOException {
+//        return iCategoryGateway.getCategories();
+//    }
 }

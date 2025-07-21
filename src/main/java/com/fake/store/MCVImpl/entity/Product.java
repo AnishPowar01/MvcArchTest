@@ -1,6 +1,8 @@
 package com.fake.store.MCVImpl.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -18,6 +20,9 @@ public class Product extends BaseEntity {
     private String model;
     private String title;
     private String brand;
-    private String category;
     private boolean popular;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryId", nullable = false)
+    private Category category;
 }

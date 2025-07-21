@@ -1,6 +1,8 @@
 package com.fake.store.MCVImpl.mapper;
 
+import com.fake.store.MCVImpl.dtos.ProductCategoryDTO;
 import com.fake.store.MCVImpl.dtos.ProductDTO;
+import com.fake.store.MCVImpl.entity.Category;
 import com.fake.store.MCVImpl.entity.Product;
 
 public class ProductMapper {
@@ -17,12 +19,13 @@ public class ProductMapper {
                 .model(product.getModel())
                 .title(product.getTitle())
                 .brand(product.getBrand())
-                .category(product.getCategory())
+                .categoryId(product.getCategory().getId())
                 .popular(product.isPopular())
                 .build();
     }
 
-    public static Product toEntity(ProductDTO productDTO)
+
+    public static Product toEntity(ProductDTO productDTO, Category category)
     {
         return Product.builder()
                 .image(productDTO.getImage())
@@ -33,8 +36,22 @@ public class ProductMapper {
                 .model(productDTO.getModel())
                 .title(productDTO.getTitle())
                 .brand(productDTO.getBrand())
-                .category(productDTO.getCategory())
+                .category(category)
                 .popular(productDTO.isPopular())
                 .build();
+    }
+
+    public static ProductCategoryDTO toProductCategoryDTO(Product product)
+    {
+        return ProductCategoryDTO.builder().id(product.getId())
+            .image(product.getImage())
+            .color(product.getColor())
+            .price(product.getPrice())
+            .description(product.getDescription())
+            .discount(product.getDiscount())
+            .model(product.getModel())
+            .title(product.getTitle())
+            .brand(product.getBrand())
+            .popular(product.isPopular()).category(CategoryMapper.toDto(product.getCategory())).build();
     }
 }
