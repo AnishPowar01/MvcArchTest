@@ -1,5 +1,6 @@
 package com.fake.store.MCVImpl.service;
 
+import com.fake.store.MCVImpl.dtos.ProductCategoryDTO;
 import com.fake.store.MCVImpl.dtos.ProductDTO;
 import com.fake.store.MCVImpl.entity.Category;
 import com.fake.store.MCVImpl.entity.Product;
@@ -39,5 +40,12 @@ public class ProductService implements IProductService{
         Product product = productRepository.save(ProductMapper.toEntity(dto,category));
 
         return ProductMapper.toDTO(product);
+    }
+
+    @Override
+    public ProductCategoryDTO getProductDetails(Long id) throws Exception {
+
+        Product product = productRepository.findById(id).orElseThrow(()->new Exception("Product id is invalid"));
+        return ProductMapper.toProductCategoryDTO(product);
     }
 }
